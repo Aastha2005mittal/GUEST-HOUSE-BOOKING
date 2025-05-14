@@ -5,8 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>King Sukh Guest House</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+   <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Alpine.js CDN -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="bg-white text-gray-800">
+<body x-data="{ open: false, selectedRoom: '', bookingConfirmed: false }"class="bg-white text-gray-800 ">
   <!-- Navbar -->
   <header class="bg-gray-600 text-white shadow-md">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -75,48 +79,148 @@
   </div>
 </section>
 
- <!-- Rooms Section -->
-<section id="Rooms" class="py-12 bg-gray-100 fade-in">
-  <div class="container mx-auto px-4">
-    <h3 class="text-3xl font-semibold mb-8 text-center">Our Rooms</h3>
-    <div class="grid md:grid-cols-3 gap-8">
-      <!-- Room card -->
-      <div class="bg-white shadow rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:border-4 hover:border-gray-800">
-        <img src="images/room1.jpg" alt="Room" class="w-full h-88 object-cover transition-all duration-300 ease-in-out" />
-        <div class="p-4">
-          <h4 class="text-xl font-semibold mb-2">Cozy Haven Room</h4>
-          <p class="text-gray-600">Escape to comfort in our Cozy Haven Room, a snug retreat designed for intimate relaxation.</p>
-          <p class="text-gray-600">Starting from <b>Rs. 1000/night</b></p>
-          <a href="#contact" class="mt-4 inline-block bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg text-lg">Book Now</a>
+<!-- 🛏️ ROOMS SECTION -->
+  <section id="Rooms" class="py-12 fade-in">
+    <div class="container mx-auto px-4">
+      <h3 class="text-3xl font-semibold mb-8 text-center">Our Rooms</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        
+        <!-- ROOM 1 -->
+        <div class="bg-white shadow rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:border-4 hover:border-gray-800">
+          <img src="images/room1.jpg" alt="Room" class="w-full h-64 object-cover" />
+          <div class="p-4">
+            <h4 class="text-xl font-semibold mb-2">Cozy Haven Room</h4>
+            <p class="text-gray-600">A snug retreat designed for intimate relaxation.</p>
+            <p class="text-gray-600">Starting from <b>Rs. 1000/night</b></p>
+            <button @click="open = true; selectedRoom = 'Cozy Haven Room'" 
+              class="mt-4 bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg text-lg">
+              Book Now
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div class="bg-white shadow rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:border-4 hover:border-gray-800">
-        <img src="images/small.jpg" alt="Room" class="w-full h-88 object-cover transition-all duration-300 ease-in-out" />
-        <div class="p-4">
-          <h4 class="text-xl font-semibold mb-2">Spacious Serenity Suite</h4>
-          <p class="text-gray-600">Indulge in luxury and ample space in our Spacious Serenity Suite, where tranquility meets roomy elegance.</p>
-          <p class="text-gray-600">Starting from <b>Rs. 1500/night</b></p>
-          <a href="#contact" class="mt-4 inline-block bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg text-lg">Book Now</a>
+        <!-- ROOM 2 -->
+        <div class="bg-white shadow rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:border-4 hover:border-gray-800">
+          <img src="images/small.jpg" alt="Room" class="w-full h-64 object-cover" />
+          <div class="p-4">
+            <h4 class="text-xl font-semibold mb-2">Spacious Serenity Suite</h4>
+            <p class="text-gray-600">Luxury and space combined in serene elegance.</p>
+            <p class="text-gray-600">Starting from <b>Rs. 1500/night</b></p>
+            <button @click="open = true; selectedRoom = 'Spacious Serenity Suite'" 
+              class="mt-4 bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg text-lg">
+              Book Now
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div class="bg-white shadow rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:border-4 hover:border-gray-800">
-        <img src="images/large.jpg" alt="Room" class="w-full h-88 object-cover transition-all duration-300 ease-in-out" />
-        <div class="p-4">
-          <h4 class="text-xl font-semibold mb-2">Tranquil Garden View Room</h4>
-          <p class="text-gray-600">Bask in the serenity of nature in our Tranquil Garden View Room, offering peaceful sights.</p>
-          <p class="text-gray-600">Starting from <b>Rs. 1700/night</b></p>
-          <a href="#contact" class="mt-4 inline-block bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg text-lg">Book Now</a>
+        <!-- ROOM 3 -->
+        <div class="bg-white shadow rounded-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:border-4 hover:border-gray-800">
+          <img src="images/large.jpg" alt="Room" class="w-full h-64 object-cover" />
+          <div class="p-4">
+            <h4 class="text-xl font-semibold mb-2">Tranquil Garden View Room</h4>
+            <p class="text-gray-600">Peaceful views and cozy comfort combined.</p>
+            <p class="text-gray-600">Starting from <b>Rs. 1700/night</b></p>
+            <button @click="open = true; selectedRoom = 'Tranquil Garden View Room'" 
+              class="mt-4 bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg text-lg">
+              Book Now
+            </button>
+          </div>
         </div>
+
       </div>
     </div>
+  </section>
+
+  <!-- 📝 BOOKING MODAL -->
+  <div x-show="open" class="fixed inset-0 bg-black bg-opacity-50 z-40" @click="open = false"></div>
+
+  <div x-show="open" 
+       class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+              bg-white p-6 rounded-lg shadow-lg z-50 w-full max-w-xl"
+       @click.away="open = false"
+       x-transition>
+    <h2 class="text-2xl font-semibold mb-4 text-center">Book Your Stay</h2>
+
+    <form @submit.prevent="bookingConfirmed = true; open = false" class="space-y-4">
+      <!-- Room Type -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Room Type</label>
+        <input type="text" x-model="selectedRoom" readonly 
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-4 py-2" />
+      </div>
+
+      <!-- Name -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Full Name</label>
+        <input type="text" placeholder="Your Name" required
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-4 py-2" />
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Email</label>
+        <input type="email" placeholder="you@example.com" required
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-4 py-2" />
+      </div>
+
+      <!-- Phone -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Phone</label>
+        <input type="tel" placeholder="Phone number" required
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-4 py-2" />
+      </div>
+
+      <!-- Dates -->
+      <div class="flex space-x-4">
+        <div class="flex-1">
+          <label class="block text-sm font-medium text-gray-700">Check-In</label>
+          <input type="date" required
+                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-4 py-2" />
+        </div>
+        <div class="flex-1">
+          <label class="block text-sm font-medium text-gray-700">Check-Out</label>
+          <input type="date" required
+                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-4 py-2" />
+        </div>
+      </div>
+
+      <!-- Guests -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Number of Guests</label>
+        <input type="number" min="1" max="10" value="1" required
+               class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-4 py-2" />
+      </div>
+
+      <!-- Submit -->
+      <div class="text-center">
+        <button type="submit" class="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg text-lg">
+          Confirm Booking
+        </button>
+      </div>
+    </form>
+
+    <!-- Cancel -->
+    <div class="text-center mt-4">
+      <button @click="open = false" class="text-sm text-red-600 hover:underline">Cancel</button>
+    </div>
   </div>
-</section>
+
+  <!-- Confirmation Message -->
+  <div x-show="bookingConfirmed" x-transition class="fixed inset-0 flex justify-center items-center bg-gray-800 bg-opacity-50 z-50">
+    <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+      <h3 class="text-2xl font-semibold text-green-600">Your Room is Confirmed!</h3>
+      <p class="mt-4 text-lg">Thank you for your booking! We look forward to hosting you.</p>
+      <button @click="bookingConfirmed = false" class="mt-4 bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg text-lg">
+        Close
+      </button>
+    </div>
+  </div>
+
+
 
 
   <!-- Service section -->
-  <section id="Services" class="flex flex-col md:flex-row items-center justify-center p-6 md:p-12 bg-white">
+<section id="Services" class="flex flex-col md:flex-row items-center justify-center p-6 md:p-12 bg-white">
   <!-- Left: Image -->
   <div class="w-full md:w-1/2 mb-6 md:mb-0">
     <img src="https://c4.wallpaperflare.com/wallpaper/901/235/790/colourful-sunset-wallpaper-preview.jpg" alt="Beautiful Scenery" class="rounded-xl w-full h-auto object-cover">
@@ -128,39 +232,41 @@
     <h2 class="text-3xl font-bold mb-6">Strive Only For The Best.</h2>
 
     <ul class="space-y-4">
+      <!-- Security -->
       <li class="flex items-center space-x-4">
         <div class="bg-blue-100 text-blue-600 p-3 rounded-full">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c1.104 0 2-.896 2-2s-.896-2-2-2-2 .896-2 2 .896 2 2 2zm0 0v4m0 4h.01" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 0v6m0 0h.01" />
           </svg>
         </div>
         <span class="text-lg font-medium">High Class Security</span>
       </li>
 
+      <!-- 24/7 Room Service -->
       <li class="flex items-center space-x-4">
         <div class="bg-pink-100 text-pink-600 p-3 rounded-full">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16v-4a4 4 0 118 0v4M5 20h14a1 1 0 001-1v-3a9 9 0 10-18 0v3a1 1 0 001 1z" />
           </svg>
         </div>
         <span class="text-lg font-medium">24 Hours Room Service</span>
       </li>
 
+      <!-- Restaurant -->
       <li class="flex items-center space-x-4">
         <div class="bg-purple-100 text-purple-600 p-3 rounded-full">
-          <!-- Fork and Knife Icon (Restaurant) -->
-          <svg xmlns="fa-classic fa-solid fa-utensils fa-fw" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M7 2a1 1 0 0 0-1 1v6.586l-.293-.293a1 1 0 0 0-1.414 1.414L6 11.414V21a1 1 0 0 0 2 0V3a1 1 0 0 0-1-1zm5.707 2.293a1 1 0 0 0-1.414 1.414L12.586 7H11a1 1 0 0 0 0 2h1.586l-1.293 1.293a1 1 0 0 0 1.414 1.414L14 10.414l1.293 1.293a1 1 0 0 0 1.414-1.414L15.414 9l1.293-1.293a1 1 0 0 0-1.414-1.414L14 7.586l-1.293-1.293a1 1 0 0 0 0-1.414z"/>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 2a1 1 0 0 0-1 1v6H6V3a1 1 0 1 0-2 0v6a3 3 0 0 0 3 3v9a1 1 0 1 0 2 0v-9a3 3 0 0 0 3-3V3a1 1 0 0 0-2 0v6h-1V3a1 1 0 0 0-1-1zm9.5 0a.5.5 0 0 0-1 0v6.5a.5.5 0 0 1-1 0V2a.5.5 0 0 0-1 0v6.5a1.5 1.5 0 0 0 3 0V2zM16 14a1 1 0 0 0-1 1v5a1 1 0 1 0 2 0v-5a1 1 0 0 0-1-1z"/>
           </svg>
         </div>
         <span class="text-lg font-medium">Restaurant</span>
       </li>
-      
 
+      <!-- Tourist Guide -->
       <li class="flex items-center space-x-4">
         <div class="bg-red-100 text-red-600 p-3 rounded-full">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c1.104 0 2-.896 2-2s-.896-2-2-2-2 .896-2 2 .896 2 2 2zm0 0v4m0 4h.01" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 0v6m0 0h.01" />
           </svg>
         </div>
         <span class="text-lg font-medium">Tourist Guide Support</span>
@@ -168,6 +274,7 @@
     </ul>
   </div>
 </section>
+
 
 
   <!-- Gallery Section -->
@@ -276,8 +383,7 @@
   </section>
   
 
-  <!-- Footer -->
-  <footer class="bg-black text-white py-10">
+ <footer class="bg-black text-white py-10">
     <div class="container mx-auto px-4 grid md:grid-cols-4 gap-8">
       <div>
         <h4 class="text-lg font-bold mb-2">Kingsukh Guest House</h4>
@@ -324,8 +430,9 @@
         </div>
       </div>
     </div>
-    <div class="text-center text-gray-500 mt-10">Copyright © 2025 Kingsukh Guest House. All rights reserved.</div>
-  </footer>
+    <div class="bg-gray-800 py-4 text-center text-gray-500 mt-10">Copyright © 2025 Kingsukh Guest House. All rights reserved.</div>
+</footer>
+
 
 </body>
 <script>
@@ -346,6 +453,7 @@
 
   setInterval(nextSlide, 5000); // Change slide every 5 seconds
   showSlide(currentIndex); // Initialize
+  
 </script>
 
 </html>
